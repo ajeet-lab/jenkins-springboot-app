@@ -23,10 +23,10 @@ pipeline{
                 sh 'docker push ajeet9415/javaappjdk17:01'
             }
         }
-        stage('deploy') {
+        stage('deploy to k8s') {
             steps {
                 script{
-                    sh 'echo "Login success"'
+                    kubernetesDeploy (configs: 'deploymentservice.yml', kubeconfigId: 'kube8configpwd')
                 }
             }
         }
